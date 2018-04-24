@@ -1,38 +1,52 @@
-Role Name
+Ansible role: resolv
 =========
 
-A brief description of the role goes here.
+[![MIT licensed][mit-badge]][mit-link]
+[![Galaxy Role][role-badge]][galaxy-link]
+
+This role generates custom */etc/resolv.conf* for quick and smart DNS setup during configuration management.
+The role is primarily used as a dependency for other roles in the environment which doesn't have stable dns resolver
+configuration.
+For example when testing local dns server setup, this role can be used as temporary resolv configuration for installing
+dependencies.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+One of the following OS (or deriviatives):
+ - Debian (Raspbian, Minibian)
+   - all
 
 Role Variables
 --------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variables | Description | Default|
+|-----------|-------------|--------|
+| **resolv_nameservers** | The list of dns resolvers to be added to */etc/resolv.conf* | `9.9.9.9` |
+| **resolv_lock** | Whether or not to lock the */etc/resolv.conf*. Useful when setting up the dns resolver which uses DHCP but does not need to use DNS resolver pushed by DHCP server | `no` |
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
-Example Playbook
+Example Playboouk
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: rpi_3
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: drewshg312.rpi3_network, rpi3_network_LAN_ip: 10.0.0.1, rpi3_network_LAN: 10.0.0.254 }
 
 License
 -------
 
-BSD
+[MIT][mit-link]
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Andrew Shagayev | [e-mail](mailto:drewshg@gmail.com)
+
+[role-badge]: https://img.shields.io/badge/role-drew--kun.resolv-green.svg
+[galaxy-link]: https://galaxy.ansible.com/drew-kun/resolv/
+[mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[mit-link]: https://raw.githubusercontent.com/drew-kun/ansible-resolv/master/LICENSE
