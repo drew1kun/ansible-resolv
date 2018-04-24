@@ -37,7 +37,7 @@ Example Playboouk
 
     - hosts: rpi_3
       roles:
-         - { role: drew-kun.resolv, resolv_lock: no }
+         - { role: drew-kun.resolv, resolv_nameservers: [8.8.8.8, 8.8.4.4], resolv_lock: no }
 
 License
 -------
