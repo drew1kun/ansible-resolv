@@ -1,0 +1,7 @@
+---
+# defaults file for ansible-resolv
+
+resolv_nameserver:
+  - 9.9.9.9
+
+resolv_lock: no

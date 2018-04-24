@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Andrew Shagayev
+  description: The role configures the DNS settings writing the /etc/resolv.conf and optionally locks the file
+
+  license: MIT
+
+  min_ansible_version: 1.2
+
+  github_branch: master
+
+  platforms:
+  - name: Debian
+     versions:
+     - all
+
+  galaxy_tags
+  - resolv
+  - resolv.conf
+  - dns
+
+dependencies: []
