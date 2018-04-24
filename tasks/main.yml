@@ -1,7 +1,7 @@
 ---
 # tasks file for ansible-resolv
 
-- name: "[main] Try setting dns to {{ resolv_nameserver }}"
+- name: "[main] Try setting dns to {{ resolv_nameservers }}"
   template: src=resolv.conf.j2 dest=/etc/resolv.conf mode=0644 owner=root group=root
   become: yes
   ignore_errors: yes
@@ -33,7 +33,7 @@
   tags:
     - resolv
 
-- name: "[main] Set dns to {{ resolv_nameserver }}"
+- name: "[main] Set dns to {{ resolv_nameservers }}"
   template: src=resolv.conf.j2 dest=/etc/resolv.conf mode=0644 owner=root group=root
   become: yes
   when: resolv_try_result | failed
