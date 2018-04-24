@@ -10,12 +10,15 @@ configuration.
 For example when testing local dns server setup, this role can be used as temporary resolv configuration for installing
 dependencies.
 
+Optionally it can lock the */etc/resolv.conf* file by changing it's 'i' attribute.
+
 Requirements
 ------------
 
 One of the following OS (or deriviatives):
  - Debian (Raspbian, Minibian)
    - all
+
 
 Role Variables
 --------------
@@ -34,7 +37,7 @@ Example Playboouk
 
     - hosts: rpi_3
       roles:
-         - { role: drewshg312.rpi3_network, rpi3_network_LAN_ip: 10.0.0.1, rpi3_network_LAN: 10.0.0.254 }
+         - { role: drew-kun.resolv, resolv_lock: no }
 
 License
 -------
