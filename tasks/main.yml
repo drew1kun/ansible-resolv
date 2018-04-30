@@ -22,12 +22,12 @@
     msg: "Something wrong with /etc/resolv.conf. Please check the previous task error message"
   when:
     - resolv_conf_attrib_i.rc == 1
-    - resolv_try_result | failed
+    - resolv_try_result is failed
 
 - name: "[main] Unlock /etc/resolv.conf before changing nameserver, if it was locked"
   command: chattr -i /etc/resolv.conf
   become: yes
-  when: resolv_try_result | failed
+  when: resolv_try_result is failed
     or
     not resolv_lock and resolv_conf_attrib_i.rc == 0
   tags:
@@ -36,7 +36,7 @@
 - name: "[main] Set dns to {{ resolv_nameservers }}"
   template: src=resolv.conf.j2 dest=/etc/resolv.conf mode=0644 owner=root group=root
   become: yes
-  when: resolv_try_result | failed
+  when: resolv_try_result is failed
   tags:
     - resolv
 
@@ -45,7 +45,7 @@
   become: yes
   when:
     - resolv_lock
-    - resolv_try_result | failed or resolv_conf_attrib_i.rc == 1
+    - resolv_try_result is failed or resolv_conf_attrib_i.rc == 1
   tags:
     - resolv
 ...
