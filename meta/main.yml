@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: resolv
   author: Andrew Shagayev
   description: The role configures the DNS settings writing the /etc/resolv.conf and optionally locks the file
 
